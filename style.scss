@@ -1,0 +1,50 @@
+$utilities : (
+  "width": (
+    property: width,
+    class: w,
+    responsive : true ,
+    values: (
+      25: 25%,
+      35: 35%,
+      40 :40%,
+      50: 50%,
+      60 : 60% ,
+      70 : 70%,
+      75: 75%,
+      100: 100%,
+      auto: auto
+    )
+  )
+  );
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(to right, #70e1f5, #ffd194);
+  font-family: Lato, sans-serif;
+  padding: clamp(20px, 5vw, 50px) 10px;
+  color: #161616;
+}
+button[type = "button"] {
+    width: 50px;
+    margin-top: 30px;
+}
+// div[type = "button"]:nth-child(2) {
+//     margin-left: 8px;
+// }
+h2 {
+    font-size: clamp(16px , 5vw , 23px );
+}
+.cycles {
+    font-size: clamp(18px , 5vw , 23px );
+
+}

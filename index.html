@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pomodoro App</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;400;600;800&family=Lato:wght@100;300;400;700;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container w-sm-50 w-md-35">
+      <div class="titre text-center">
+        <h2 class="fw-light">
+          Le
+          <span class="text-uppercase text-decoration-underline fw-bolder">Pomodoro</span>
+        </h2>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-sm-6">
+          <div class="pomodoroState p-3 bg-light text-center shadow rounded-2" id="work">
+            <p class="fw-bold fs-5">Travail</p>
+            <p class="m-0 fw-light" id="workTime">30:00</p>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="pomodoroState p-3 bg-light text-center shadow rounded-2 mt-3 mt-sm-0" id="rest">
+            <p class="fw-bold fs-5">Repos</p>
+            <p class="m-0 fw-light" id="restTime">5:00</p>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-light" type = "button" id="play"> 
+                <img src="ressources/play.svg" alt="" class="w-100"/>
+        </button>
+        <button class="btn btn-light ms-sm-2" type = "button" id="reset">
+                <img src="ressources/reset.svg" alt="" class="w-100"/>
+        </button>
+      </div>
+      <div class="text-center mt-5 fw-bolder fs-4">
+        <p class="cycles">Cycles(s) : 0</p>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
