@@ -25,13 +25,19 @@
         <div class="col-sm-6">
           <div class="pomodoroState p-3 bg-light text-center shadow rounded-2" id="work">
             <p class="fw-bold fs-5">Travail</p>
-            <p class="m-0 fw-light" id="workTime">30:00</p>
+            <div class="input-group">
+                  <input type="number" name="" id="workTimeMin" class="form-control fw-light" min="0" value="30">
+                  <input type="number" name="" id="workTimeSec" class="form-control fw-light" min="0" max="59" value="00">
+            </div>
           </div>
         </div>
         <div class="col-sm-6">
           <div class="pomodoroState p-3 bg-light text-center shadow rounded-2 mt-3 mt-sm-0" id="rest">
             <p class="fw-bold fs-5">Repos</p>
-            <p class="m-0 fw-light" id="restTime">5:00</p>
+            <div class="input-group">
+              <input type="number" name="" id="restTimeMin" class="form-control fw-light" min="0" value="05">
+              <input type="number" name="" id="restTimeSec" class="form-control fw-light" min="0" max="59" value="00">
+            </div>
           </div>
         </div>
       </div>
