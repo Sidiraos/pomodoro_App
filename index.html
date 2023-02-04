@@ -13,7 +13,8 @@
     />
   </head>
   <body>
-    <div class="container w-sm-50 w-md-35">
+    <form action="" id="form">
+    <div class="container w-sm-75 w-md-50">
       <div class="titre text-center">
         <h2 class="fw-light">
           Le
@@ -45,15 +46,15 @@
         <button class="btn btn-light" type = "button" id="play"> 
                 <img src="ressources/play.svg" alt="" class="w-100"/>
         </button>
-        <button class="btn btn-light ms-sm-2" type = "button" id="reset">
+        <button class="btn btn-light ms-sm-2" type = "button" id="resetBtn">
                 <img src="ressources/reset.svg" alt="" class="w-100"/>
         </button>
       </div>
       <div class="text-center mt-5 fw-bolder fs-4">
-        <p class="cycles">Cycles(s) : 0</p>
+        <p class="cycles">Cycles(s) : <span id="cycle">0</span></p>
       </div>
     </div>
-
+  </form>
     <script src="app.js"></script>
   </body>
 </html>

@@ -5,7 +5,7 @@ const workTimeSec = document.querySelector('#workTimeSec');
 const restTimeMin = document.querySelector('#restTimeMin');
 const restTimeSec = document.querySelector('#restTimeSec');
 const playBtn = document.querySelector('#play') ;
-const resetBtn = document.querySelector('#reset') ;
+const resetBtn = document.querySelector('#resetBtn') ;
 let interval;
 let interval2;
 
@@ -35,6 +35,7 @@ function chrono (minuteTimeUser , secondTimeUser) {
             count = 59 ; 
             minuteTime--;
             console.log(minuteTime , "mn") ;
+            secondTimeUser.value = count.toString();
             minuteTimeUser.value = minuteTime.toString();
 
         } else if (minuteTime == 0 && count == 0) {
@@ -46,27 +47,65 @@ function chrono (minuteTimeUser , secondTimeUser) {
     return decount ;
 }
 
+let buttonClicked = false;
+
 playBtn.addEventListener('click' , handleStartBtn);
 function handleStartBtn() {
-    pomodoroPlay()
+    if (buttonClicked) {
+        pomodoroPause()
+        return
+    }
+
+    buttonClicked = true ;
+    pomodoroPlay() ;
 }
-
-
 
 function pomodoroPlay() {   
     let chrono1 = chrono(workTimeMin , workTimeSec) ;
-    let chrono2 = chrono(restTimeMin , restTimeSec);
-    triggerPomodoro(chrono1) ;
-    triggerPomodoro (chrono2);
+    triggerWorkPomodoro(chrono1)
     playBtn.innerHTML = `<img src="ressources/pause.svg" alt="" class="w-100"/>`;
 }
+function pomodoroPause(){
+    console.log('pomodoro pause') ;
+    clearInterval(interval);
+    playBtn.innerHTML = `<img src="ressources/play.svg" alt="" class="w-100"/>`;
+    buttonClicked = false
+}
 
-function triggerPomodoro(chrono){
-    let interval = setInterval(()=> {
+let cycle = 0;
+function triggerWorkPomodoro(chrono){
+    interval = setInterval(()=> {
         if (chrono() == "yes") {
             clearInterval(interval) ;
+            cycle++;
+            document.getElementById('cycle').textContent = cycle.toString();
+            playBtn.innerHTML = `<img src="ressources/play.svg" alt="" class="w-100"/>`;
+            document.getElementById('form').reset() ;
+            triggerRestPomodoro();
         }
     } , 1000) ;
 }
+
+function triggerRestPomodoro() {
+    let chrono2 = chrono(restTimeMin , restTimeSec) ;
+    playBtn.disabled = true;
+    interval2 = setInterval(()=> {
+        if (chrono2() == "yes") {
+            clearInterval(interval) ;
+            playBtn.disabled = false;
+        }
+    } , 1000) ;
+}
+
+resetBtn.addEventListener('click' , resetPomodoro)
+
+function resetPomodoro () { 
+    document.getElementById('form').reset();
+    cycle = 0;
+    document.getElementById('cycle').textContent = cycle.toString();
+    buttonClicked = false;
+    clearInterval(interval);
+    playBtn.innerHTML = `<img src="ressources/play.svg" alt="" class="w-100"/>`;
+ }
 
 
