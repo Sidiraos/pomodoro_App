@@ -14,7 +14,7 @@
   </head>
   <body>
     <form action="" id="form">
-    <div class="container w-sm-75 w-md-50">
+    <div class="container w-sm-75 w-md-50" id="app">
       <div class="titre text-center">
         <h2 class="fw-light">
           Le
@@ -24,8 +24,8 @@
 
       <div class="row mt-5">
         <div class="col-sm-6">
-          <div class="pomodoroState p-3 bg-light text-center shadow rounded-2" id="work">
-            <p class="fw-bold fs-5" id="travail">Travail</p>
+          <div class="p-3 bg-light text-center shadow rounded-2">
+            <p class="fw-bold fs-5 pomodoroState" id="work">Travail</p>
             <div class="input-group">
                   <input type="number" name="" id="workTimeMin" class="form-control fw-light" min="0" value="30">
                   <input type="number" name="" id="workTimeSec" class="form-control fw-light" min="0" max="59" value="00">
@@ -33,8 +33,8 @@
           </div>
         </div>
         <div class="col-sm-6">
-          <div class="pomodoroState p-3 bg-light text-center shadow rounded-2 mt-3 mt-sm-0" id="rest">
-            <p class="fw-bold fs-5">Repos</p>
+          <div class="p-3 bg-light text-center shadow rounded-2 mt-3 mt-sm-0">
+            <p class="fw-bold fs-5 pomodoroState" id="rest">Repos</p>
             <div class="input-group">
               <input type="number" name="" id="restTimeMin" class="form-control fw-light" min="0" value="05">
               <input type="number" name="" id="restTimeSec" class="form-control fw-light" min="0" max="59" value="00">

@@ -1,5 +1,3 @@
-const work = document.querySelector('#work');
-const rest = document.querySelector('#rest');
 const workTimeMin = document.querySelector('#workTimeMin');
 const workTimeSec = document.querySelector('#workTimeSec');
 const restTimeMin = document.querySelector('#restTimeMin');
@@ -62,6 +60,7 @@ function handleStartBtn() {
 
 function pomodoroPlay() {
     let chrono1 = chrono(workTimeMin , workTimeSec) ;
+    focusState({work : true , rest : false});
     triggerWorkPomodoro(chrono1);
     playBtn.innerHTML = `<img src="ressources/pause.svg" alt="" class="w-100"/>`;
     disabledInputSpinButton();
@@ -71,7 +70,9 @@ function pomodoroPause(){
     console.log('pomodoro pause') ;
     clearInterval(interval);
     playBtn.innerHTML = `<img src="ressources/play.svg" alt="" class="w-100"/>`;
-    buttonClicked = false
+    buttonClicked = false ;
+    focusState({work : false , rest : false});
+
 }
 
 let cycle = 0;
@@ -89,14 +90,15 @@ function triggerWorkPomodoro(chrono){
 
 function triggerRestPomodoro() {
     let chrono2 = chrono(restTimeMin , restTimeSec) ;
+    focusState({work : false , rest : true});
     playBtn.disabled = true;
-
     interval2 = setInterval(()=> {
         if (chrono2() == "yes") {
             clearInterval(interval2) ;
             playBtn.disabled = false;
             document.getElementById('form').reset() ;
             enabledInputSpinButton();
+            focusState({work : false , rest : false});
         }
     } , 1000) ;
 }
@@ -113,6 +115,8 @@ function resetPomodoro () {
     playBtn.innerHTML = `<img src="ressources/play.svg" alt="" class="w-100"/>`;
     playBtn.disabled = false;
     enabledInputSpinButton();
+    focusState({work : false , rest : false});
+
 
  }
 
@@ -121,4 +125,16 @@ function disabledInputSpinButton () {
 }
 function enabledInputSpinButton () {
     document.querySelectorAll("input[type = number]").forEach(input => input.disabled = false);
+}
+
+function focusState (items){
+    for(let i in items){
+        if(items[i]){
+            console.log(i);
+            document.getElementById(i).classList.add('active');
+        }
+        else {
+            document.getElementById(i).classList.remove('active');
+        }
+    }
 }
