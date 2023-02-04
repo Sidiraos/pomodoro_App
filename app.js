@@ -10,6 +10,7 @@ let interval;
 let interval2;
 
 
+
 function chrono (minuteTimeUser , secondTimeUser) {
     // minute
     let minuteTime = parseInt(minuteTimeUser.value) ;
@@ -20,8 +21,7 @@ function chrono (minuteTimeUser , secondTimeUser) {
     if (secondTimeUser.value == "00") {
         count = 59 ;
         minuteTime = parseInt(minuteTime -1);
-    }
-    else {
+    } else {
         count = parseInt(secondTimeUser.value);
     }
     minuteTimeUser.value = minuteTime.toString(); 
@@ -60,11 +60,13 @@ function handleStartBtn() {
     pomodoroPlay() ;
 }
 
-function pomodoroPlay() {   
+function pomodoroPlay() {
     let chrono1 = chrono(workTimeMin , workTimeSec) ;
-    triggerWorkPomodoro(chrono1)
+    triggerWorkPomodoro(chrono1);
     playBtn.innerHTML = `<img src="ressources/pause.svg" alt="" class="w-100"/>`;
+    disabledInputSpinButton();
 }
+
 function pomodoroPause(){
     console.log('pomodoro pause') ;
     clearInterval(interval);
@@ -80,7 +82,6 @@ function triggerWorkPomodoro(chrono){
             cycle++;
             document.getElementById('cycle').textContent = cycle.toString();
             playBtn.innerHTML = `<img src="ressources/play.svg" alt="" class="w-100"/>`;
-            document.getElementById('form').reset() ;
             triggerRestPomodoro();
         }
     } , 1000) ;
@@ -89,10 +90,13 @@ function triggerWorkPomodoro(chrono){
 function triggerRestPomodoro() {
     let chrono2 = chrono(restTimeMin , restTimeSec) ;
     playBtn.disabled = true;
+
     interval2 = setInterval(()=> {
         if (chrono2() == "yes") {
-            clearInterval(interval) ;
+            clearInterval(interval2) ;
             playBtn.disabled = false;
+            document.getElementById('form').reset() ;
+            enabledInputSpinButton();
         }
     } , 1000) ;
 }
@@ -105,7 +109,16 @@ function resetPomodoro () {
     document.getElementById('cycle').textContent = cycle.toString();
     buttonClicked = false;
     clearInterval(interval);
+    clearInterval(interval2);
     playBtn.innerHTML = `<img src="ressources/play.svg" alt="" class="w-100"/>`;
+    playBtn.disabled = false;
+    enabledInputSpinButton();
+
  }
 
-
+function disabledInputSpinButton () {
+    document.querySelectorAll("input[type = number]").forEach(input => input.disabled = true);
+}
+function enabledInputSpinButton () {
+    document.querySelectorAll("input[type = number]").forEach(input => input.disabled = false);
+}
